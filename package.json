@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://rodriig28.github.io/Contador-Pelotitas/",
   "scripts": {
     "build": "vite build",
     "predeploy": "npm run build",
