@@ -8,6 +8,7 @@ const getRandomPosition = () => ({
     y: Math.random() * window.innerHeight,
 });
 
+
 // Función para obtener un color hexadecimal aleatorio
 const getRandomColor = () => `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
@@ -22,6 +23,7 @@ const ContadorResponsive = () => {
     // Estado para controlar la visibilidad del mensaje inicial
     const [mostrarMensaje, setMostrarMensaje] = useState(true);
 
+    
     // Función para incrementar el contador y agregar una nueva pelota
     const incrementar = () => {
         setContador(contador + 1);
@@ -29,6 +31,7 @@ const ContadorResponsive = () => {
             id: pelotas.length + 1,
             position: getRandomPosition(),
             color: getRandomColor(),
+            numero: pelotas.length + 1, // Número de pelota
         };
         setPelotas([...pelotas, nuevaPelota]);
     };
@@ -57,6 +60,27 @@ const ContadorResponsive = () => {
         return () => clearTimeout(timeoutId);
     }, []);
 
+    // Efecto para manejar el movimiento del dispositivo
+  useEffect(() => {
+    const handleDeviceMotion = (event) => {
+      const { gamma, beta } = event.rotationRate || {};
+      setPelotas((prevPelotas) =>
+        prevPelotas.map((pelota) => ({
+          ...pelota,
+          position: {
+            x: pelota.position.x + gamma * 5, // Ajusta el valor de multiplicación según la velocidad deseada
+            y: pelota.position.y + beta * 5,
+          },
+        }))
+      );
+    };
+
+    window.addEventListener('devicemotion', handleDeviceMotion);
+
+    return () => {
+      window.removeEventListener('devicemotion', handleDeviceMotion);
+    };
+  }, []);
     // Renderizado del componente
     return (
         <Flex
@@ -70,7 +94,7 @@ const ContadorResponsive = () => {
             <Flex direction="column" align="center" justify="center">
                 {/* Mostrar el mensaje inicial si mostrarMensaje es true */}
                 {mostrarMensaje && (
-                    <Text mb="4">
+                    <Text mb="4" fontSize="2xl">
                         Haz clic en las pelotitas
                     </Text>
                 )}
@@ -78,7 +102,7 @@ const ContadorResponsive = () => {
                 {/* Mostrar el contador */}
                 <motion.div
                     initial={{ scale: 2 }}
-                    style={{ zIndex: 2 }}
+                    style={{ zIndex: 2, fontSize: '2rem' }}
                 >
                     Contador: {contador}
                 </motion.div>
@@ -93,57 +117,73 @@ const ContadorResponsive = () => {
                                 position: 'absolute',
                                 left: pelota.position.x,
                                 top: pelota.position.y,
-                                width: '20px',
-                                height: '20px',
+                                width: '40px',
+                                height: '40px',
                                 background: pelota.color,
                                 borderRadius: '50%',
-                                marginRight: '5px',
+                                marginRight: '10px',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+
                             }}
-                        />
-                    ))}
-                </Flex>
-
-                {/* Botones para incrementar, resetear y decrementar el contador */}
-                <Flex mt="4" wrap="wrap">
-                    <Button
-                        as={motion.button}
-                        onClick={incrementar}
-                        whileHover={{ scale: 1.1, backgroundColor: "#2ecc71", color: "#ffffff" }}
-                        whileTap={{ scale: 0.9 }}
-                        colorScheme="green"
-                        mx="2"
-                        px="10"
-                    >
-                        +
-                    </Button>
-
-                    <Button
-                        as={motion.button}
-                        onClick={reset}
-                        whileHover={{ scale: 1.1, backgroundColor: "#999c9b", color: "#ffffff" }}
-                        whileTap={{ scale: 0.9 }}
-                        colorScheme="gray"
-                        mx="2"
-                        px="10"
-                    >
-                        Reset
-                    </Button>
-
-                    <Button
-                        as={motion.button}
-                        onClick={decrementar}
-                        whileHover={{ scale: 1.1, backgroundColor: "#e74c3c", color: "#ffffff" }}
-                        whileTap={{ scale: 0.9 }}
-                        colorScheme="red"
-                        mx="2"
-                        px="10"
-                        isDisabled={contador <= 0}
-                    >
-                        -
-                    </Button>
-                </Flex>
+                            onClick={() => mostrarNumeroPelota(pelota.numero)}
+                            >
+                            <span style={{ color: 'white', fontWeight: 'bold',fontSize: '1.5rem' }}>{pelota.numero}</span>
+                            </motion.div>
+                            ))}
             </Flex>
+
         </Flex>
+
+            {/* Botones para incrementar, resetear y decrementar el contador */ }
+    <Flex mt="4" wrap="wrap">
+        {/* Botones para incrementar, resetear y decrementar el contador */}
+        <Flex mt="4" wrap="wrap">
+            <Button
+                as={motion.button}
+                onClick={decrementar}
+                whileHover={{ scale: 1.1, backgroundColor: "#e74c3c", color: "#ffffff" }}
+                whileTap={{ scale: 0.9 }}
+                colorScheme="red"
+                mx="2"
+                px={{ base: '10', md: '16' }}
+                fontSize={{ base: 'xl', md: '2xl' }}
+                isDisabled={contador <= 0}
+            >
+                -
+            </Button>
+
+            <Button
+                as={motion.button}
+                onClick={reset}
+                whileHover={{ scale: 1.1, backgroundColor: "#999c9b", color: "#ffffff" }}
+                whileTap={{ scale: 0.9 }}
+                colorScheme="gray"
+                mx="2"
+                px={{ base: '10', md: '16' }}
+                fontSize={{ base: 'xl', md: '2xl' }}
+            >
+                Reset
+            </Button>
+
+            <Button
+                as={motion.button}
+                onClick={incrementar}
+                whileHover={{ scale: 1.1, backgroundColor: "#2ecc71", color: "#ffffff" }}
+                whileTap={{ scale: 0.9 }}
+                colorScheme="green"
+                mx="2"
+                px={{ base: '10', md: '16' }}
+                fontSize={{ base: 'xl', md: '2xl' }}
+            >
+                +
+            </Button>
+        </Flex>
+
+    </Flex>
+        </Flex >
     );
 };
 
