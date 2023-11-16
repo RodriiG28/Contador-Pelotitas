@@ -8,7 +8,6 @@ const getRandomPosition = () => ({
     y: Math.random() * window.innerHeight,
 });
 
-
 // Función para obtener un color hexadecimal aleatorio
 const getRandomColor = () => `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
@@ -23,7 +22,6 @@ const ContadorResponsive = () => {
     // Estado para controlar la visibilidad del mensaje inicial
     const [mostrarMensaje, setMostrarMensaje] = useState(true);
 
-    
     // Función para incrementar el contador y agregar una nueva pelota
     const incrementar = () => {
         setContador(contador + 1);
@@ -60,27 +58,6 @@ const ContadorResponsive = () => {
         return () => clearTimeout(timeoutId);
     }, []);
 
-    // Efecto para manejar el movimiento del dispositivo
-  useEffect(() => {
-    const handleDeviceMotion = (event) => {
-      const { gamma, beta } = event.rotationRate || {};
-      setPelotas((prevPelotas) =>
-        prevPelotas.map((pelota) => ({
-          ...pelota,
-          position: {
-            x: pelota.position.x + gamma * 5, // Ajusta el valor de multiplicación según la velocidad deseada
-            y: pelota.position.y + beta * 5,
-          },
-        }))
-      );
-    };
-
-    window.addEventListener('devicemotion', handleDeviceMotion);
-
-    return () => {
-      window.removeEventListener('devicemotion', handleDeviceMotion);
-    };
-  }, []);
     // Renderizado del componente
     return (
         <Flex
