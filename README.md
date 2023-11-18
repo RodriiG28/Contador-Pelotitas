@@ -4,8 +4,10 @@ Un contador interactivo de pelotas desarrollado con React, Chakra UI y Framer Mo
 
 ## Demo
 
-Ve a [https://github.com/RodriiG28/Contador-Pelotitas](https://github.com/RodriiG28/Contador-Pelotitas) para ver una demostración en vivo.
-## Capturas de Pantalla
+Ve a este link  [Contador](https://rodriig28.github.io/Contador-Pelotitas/) para ver una demostración en vivo.
+
+## Captura de Pantalla
+
 ![Alt text](image.png)
 
 
