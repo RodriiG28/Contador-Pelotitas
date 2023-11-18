@@ -1,8 +1,25 @@
-# React + Vite
+# Contador de Pelotas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Un contador interactivo de pelotas desarrollado con React, Chakra UI y Framer Motion.
 
-Currently, two official plugins are available:
+## Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Ve a [https://github.com/RodriiG28/Contador-Pelotitas](https://github.com/RodriiG28/Contador-Pelotitas) para ver una demostración en vivo.
+![Alt text](image.png)
+## Capturas de Pantalla
+
+_Inserta capturas de pantalla o gifs animados para visualizar el proyecto en acción._
+
+## Tecnologías Utilizadas
+
+- [React](https://reactjs.org/)
+- [Chakra UI](https://chakra-ui.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+
+## Características
+
+- Incrementa y decrementa el contador de manera interactiva.
+- Elimina pelotas haciendo clic en ellas.
+- Experiencia mejorada con efectos de animación atractivos.
+
+#--Rodrigo Avila--
