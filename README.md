@@ -8,7 +8,7 @@ Ve a este link  [Contador](https://rodriig28.github.io/Contador-Pelotitas/) para
 
 ## Captura de Pantalla
 
-![Alt text](image.png)
+![Contador](image.png)
 
 
 ## Tecnologías Utilizadas
