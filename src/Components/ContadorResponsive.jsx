@@ -149,6 +149,7 @@ const ContadorResponsive = () => {
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 zIndex: 3,
+                                border: '2px solid black'
                             }}
                             // Manejar clic en la pelota para eliminarla
                             onClick={() => eliminarPelota(id)}
