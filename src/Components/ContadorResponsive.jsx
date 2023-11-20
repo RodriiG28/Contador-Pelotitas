@@ -12,8 +12,8 @@ const ContadorResponsive = () => {
 
     // Función para obtener una posición aleatoria en el área visible de la pantalla
     const getRandomPosition = () => ({
-        x: Math.random() * (window.innerWidth - 40),  // Evita que la pelota se salga del lado derecho
-        y: Math.random() * (window.innerHeight - 40), // Evita que la pelota se salga del lado inferior
+        x: Math.random() * (window.innerWidth - 50),  // Evita que la pelota se salga del lado derecho
+        y: Math.random() * (window.innerHeight - 50), // Evita que la pelota se salga del lado inferior
     });
 
     // Función para obtener un color hexadecimal aleatorio
