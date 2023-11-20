@@ -133,30 +133,27 @@ const ContadorResponsive = () => {
 
   // Número máximo de pelotas por fila
   const maxPelotasPerRow = 5;
-
-  return (
+    
+return (
     <Flex
       direction="column"
       align="center"
       justify="center"
-      h="100vh"
-      w="100vw"
+      minHeight="100vh"
+      width="100%"
       overflow="hidden"
       fontFamily="Comic Sans MS"
     >
-      <Flex direction="column" align="center" justify="center">
-        {/* Mostrar el mensaje inicial si mostrarMensaje es true */}
-        <motion.div animate={mensajeAnimation} mb="4" fontSize="2xl">
+      <Flex direction="column" align="center" justify="center" width="100%">
+        <motion.div animate={mensajeAnimation} mb="4" fontSize={{ base: 'xl', md: '2xl' }}>
           {mostrarMensaje && '¡Dale a las pelotitas un toque mágico con un clic!'}
         </motion.div>
-
-        {/* Mostrar el contador */}
-        <motion.div animate={contadorAnimation} fontSize="4rem">
+  
+        <motion.div animate={contadorAnimation} fontSize={{ base: '2rem', md: '4rem' }}>
           {contador}
         </motion.div>
-
-        {/* Mostrar las pelotas en posiciones aleatorias */}
-        <Flex mt="4" mb="4" wrap="wrap">
+  
+        <Flex mt="4" mb="4" wrap="wrap" justifyContent="center">
           {pelotas.map(({ id, position, color }) => (
             <motion.div
               key={id}
@@ -178,17 +175,14 @@ const ContadorResponsive = () => {
                 zIndex: 3,
                 border: '2px solid black',
               }}
-              // Manejar clic en la pelota para eliminarla
               onClick={() => eliminarPelota(id)}
             />
           ))}
         </Flex>
       </Flex>
-
-      {/* Botones para incrementar, resetear y decrementar el contador */}
-      <Flex mt="4" wrap="wrap">
+  
+      <Flex mt="4" wrap="wrap" justifyContent="center">
         <Flex mt="4" wrap="wrap">
-          {/* Botón para decrementar */}
           <Button
             as={motion.button}
             onClick={decrementar}
@@ -205,8 +199,7 @@ const ContadorResponsive = () => {
           >
             -
           </Button>
-
-          {/* Botón para resetear */}
+  
           <Button
             as={motion.button}
             onClick={reset}
@@ -222,8 +215,7 @@ const ContadorResponsive = () => {
           >
             Reset
           </Button>
-
-          {/* Botón para incrementar */}
+  
           <Button
             as={motion.button}
             onClick={incrementar}
@@ -243,6 +235,6 @@ const ContadorResponsive = () => {
       </Flex>
     </Flex>
   );
-};
+}
 
 export default ContadorResponsive;
